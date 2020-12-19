@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
 <?php
 /*****************GPS coordinates*************************************/
  //latitude (Béjaia)
@@ -11,16 +17,19 @@
   $url = 'https://api.openweathermap.org/data/2.5/weather?lat='.$lat.'&lon='.$lon.'&units=metric&appid='.$key.'&lang=en' ;
   $contents = file_get_contents($url);
   $data=json_decode($contents);
-  echo'
+  ?>
+ 
   <div class="weathercl">
         <! -- City name -->
-        <span  class="citycl" >'.utf8_decode($data->name).'</span>
+        <span  class="citycl" ><?php echo $data->name; ?> </span>
         <! -- Icone -->
-        <span class="iconcl" ><img src="http://openweathermap.org/img/wn/'.$data->weather[0]->icon.'.png"/></span>
+        <span class="iconcl" > <?php echo '<img src="http://openweathermap.org/img/wn/'.$data->weather[0]->icon.'.png" />'; ?> </span>
         <br>
         <! -- Description -->
-        <span  class="descriptioncl" >'.utf8_decode($data->weather['0']->description).  '</span>
+        <span  class="descriptioncl" ><?php echo $data->weather['0']->description; ?></span>
         <! -- temperature -->
-        <span class="temperaturecl" >' .utf8_decode(ceil ($data->main->temp)."°C").'</span> 
-  </div>';
- ?>
+        <span class="temperaturecl" ><?php echo ceil ($data->main->temp)."°C" ; ?></span> 
+  </div>
+
+</body>
+</html>
